@@ -2,6 +2,7 @@ local options = {
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "ruff" },
+    rust = {"rust_analyzer"},
   },
 
   format_on_save = {
