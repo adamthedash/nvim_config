@@ -5,7 +5,7 @@ local lspconfig = require "lspconfig"
 
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pylsp" }
+local servers = { "html", "cssls", "pylsp", "ruff" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -16,6 +16,12 @@ for _, lsp in ipairs(servers) do
     capabilities = nvlsp.capabilities,
   }
 end
+
+-- lspconfig.ruff.setup({
+--   init_options = {
+--     settings = {}
+--   }
+-- })
 
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
