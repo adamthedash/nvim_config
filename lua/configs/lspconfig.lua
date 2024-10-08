@@ -3,7 +3,6 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
-
 -- EXAMPLE
 local servers = { "html", "cssls", "pylsp", "ruff" }
 local nvlsp = require "nvchad.configs.lspconfig"
@@ -16,6 +15,3 @@ for _, lsp in ipairs(servers) do
     capabilities = nvlsp.capabilities,
   }
 end
-
---- Rust
-require'lspconfig'.rust_analyzer.setup{}
