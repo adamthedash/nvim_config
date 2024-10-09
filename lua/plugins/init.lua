@@ -13,7 +13,7 @@ return {
     end,
   },
   {
-    "mrcjkb/rustaceanvim",
+    "mrcjkb/rustaceanvim", -- https://github.com/mrcjkb/rustaceanvim
     version = "^5", -- Recommended
     lazy = false, -- This plugin is already lazy
     ft = "rust",
@@ -34,7 +34,7 @@ return {
   },
 
   {
-    "rust-lang/rust.vim",
+    "rust-lang/rust.vim", -- https://github.com/rust-lang/rust.vim
     ft = "rust",
     init = function()
       vim.g.rustfmt_autosave = 1
@@ -70,18 +70,9 @@ return {
 
   {
     "saecki/crates.nvim",
-    ft = { "toml" },
+    event = { "BufRead Cargo.toml" },
     config = function()
-      require("crates").setup {
-        completion = {
-          cmp = {
-            enabled = true,
-          },
-        },
-      }
-      require("cmp").setup.buffer {
-        sources = { { name = "crates" } },
-      }
+      require("crates").setup()
     end,
   },
 }
