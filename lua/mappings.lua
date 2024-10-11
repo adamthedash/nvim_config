@@ -25,3 +25,6 @@ map("n", "<leader>fgb", "<CMD>Telescope git_branches<CR>", { desc = "telescope g
 map("n", "<leader>fgf", "<CMD>Telescope git_files<CR>", { desc = "telescope git-tracked files" })
 
 map("n", "<leader>cs", "<CMD>Telescope spell_suggest<CR>", { desc = "telescope spell suggest" })
+
+-- Abbreviations
+vim.cmd("ab h vert help") -- https://stackoverflow.com/a/630913
