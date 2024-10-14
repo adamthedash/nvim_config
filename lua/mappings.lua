@@ -8,7 +8,8 @@ local unmap = vim.keymap.del
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- Quick fix
-map("n", "<leader>ca", vim.lsp.buf.code_action, { noremap = true, silent = false, desc = "Quick Fix" })
+map("n", "<leader>cq", vim.lsp.buf.code_action, { noremap = true, silent = false, desc = "Quick Fix" })
+map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- Telescope re-bindings
 unmap("n", "<leader>gt") -- git status
@@ -26,5 +27,8 @@ map("n", "<leader>fgf", "<CMD>Telescope git_files<CR>", { desc = "telescope git-
 
 map("n", "<leader>cs", "<CMD>Telescope spell_suggest<CR>", { desc = "telescope spell suggest" })
 
+-- Other re-bindings
+unmap("n", "<leader>ch") -- NvCheatsheet
+
 -- Abbreviations
-vim.cmd("ab h vert help") -- https://stackoverflow.com/a/630913
+vim.cmd "ab h vert help" -- https://stackoverflow.com/a/630913
