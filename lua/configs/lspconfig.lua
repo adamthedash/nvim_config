@@ -17,3 +17,7 @@ for _, lsp in ipairs(servers) do
 end
 
 vim.lsp.inlay_hint.enable(true)
+vim.diagnostic.config({
+  virtual_text = true,
+  severity_sort = true
+})
