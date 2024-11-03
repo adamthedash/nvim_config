@@ -13,6 +13,7 @@ M.base46 = {
   -- 	["@comment"] = { italic = true },
   -- },
 }
+
 M.cheatsheet = {
   theme = "grid",
   excluded_groups = {},

@@ -32,7 +32,6 @@ return {
       }
     end,
   },
-
   {
     "rust-lang/rust.vim", -- https://github.com/rust-lang/rust.vim
     ft = "rust",
@@ -74,5 +73,31 @@ return {
     config = function()
       require("crates").setup()
     end,
+  },
+  {
+    "adamthedash/llm.nvim", -- https://github.com/huggingface/llm.nvim
+    lazy = true,
+    opts = {
+      -- cf Setup
+      backend = "llamacpp",
+      url = "http://172.30.176.1:1234/completions", -- host IP from WSL2: echo $(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+      lsp = {
+        bin_path = vim.api.nvim_call_function("stdpath", { "data" }) .. "/mason/bin/llm-ls",
+      },
+      tokenizer = {
+        path = "/mnt/c/Users/Adam/Desktop/llama-b3995-bin-win-vulkan-x64/models/qwen_tokenizer.json",
+      },
+      fim = {
+        enabled = true,
+        prefix = "<|fim_prefix|>",
+        middle = "<|fim_middle|>",
+        suffix = "<|fim_suffix|>",
+      },
+
+      context_window = 1024, -- max number of tokens for the context window
+      enable_suggestions_on_startup = true,
+      enable_suggestions_on_files = "*", -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+      disable_url_path_completion = true, -- cf Backend
+    },
   },
 }

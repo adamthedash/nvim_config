@@ -32,3 +32,8 @@ unmap("n", "<leader>ch") -- NvCheatsheet
 
 -- Abbreviations
 vim.cmd "ab h vert help" -- https://stackoverflow.com/a/630913
+
+-- LLM Stuff
+local llm_completion = require "llm.completion"
+map("i", "<C-E>", llm_completion.accept_suggestion, { desc = "Accept LLM suggestion" })
+
