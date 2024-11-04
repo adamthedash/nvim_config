@@ -76,6 +76,7 @@ return {
   },
   {
     "adamthedash/llm.nvim", -- https://github.com/huggingface/llm.nvim
+    -- dir = "~/projects/lua/llm.nvim",
     lazy = true,
     opts = {
       -- cf Setup
@@ -83,6 +84,7 @@ return {
       url = "http://172.30.176.1:1234/completions", -- host IP from WSL2: echo $(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
       lsp = {
         bin_path = vim.api.nvim_call_function("stdpath", { "data" }) .. "/mason/bin/llm-ls",
+        -- cmd_env = { LLM_LOG_LEVEL = "DEBUG" },
       },
       tokenizer = {
         path = "/mnt/c/Users/Adam/Desktop/llama-b3995-bin-win-vulkan-x64/models/qwen_tokenizer.json",
