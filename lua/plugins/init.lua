@@ -15,7 +15,6 @@ return {
   {
     "mrcjkb/rustaceanvim", -- https://github.com/mrcjkb/rustaceanvim
     version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
     ft = "rust",
     config = function()
       local mason_registry = require "mason-registry"
@@ -77,7 +76,7 @@ return {
   {
     "adamthedash/llm.nvim", -- https://github.com/huggingface/llm.nvim
     -- dir = "~/projects/lua/llm.nvim",
-    lazy = true,
+    event = "BufRead",
     opts = {
       -- cf Setup
       backend = "llamacpp",
@@ -95,6 +94,7 @@ return {
         middle = "<|fim_middle|>",
         suffix = "<|fim_suffix|>",
       },
+      debounce_ms = 400,
 
       context_window = 1024, -- max number of tokens for the context window
       enable_suggestions_on_startup = true,
