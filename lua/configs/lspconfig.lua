@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pylsp", "ruff" }
+local servers = { "html", "cssls", "pylsp", "ruff", "pyright" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -15,6 +15,8 @@ for _, lsp in ipairs(servers) do
     capabilities = nvlsp.capabilities,
   }
 end
+
+require'lspconfig'.rust_analyzer.setup{}
 
 vim.lsp.inlay_hint.enable(true)
 vim.diagnostic.config {

@@ -14,6 +14,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim", -- https://github.com/mrcjkb/rustaceanvim
+    enabled = false,
     version = "^5", -- Recommended
     ft = "rust",
     config = function()
@@ -33,6 +34,7 @@ return {
   },
   {
     "rust-lang/rust.vim", -- https://github.com/rust-lang/rust.vim
+    enabled = true,
     ft = "rust",
     init = function()
       vim.g.rustfmt_autosave = 1
@@ -76,6 +78,7 @@ return {
   {
     "adamthedash/llm.nvim", -- https://github.com/huggingface/llm.nvim
     -- dir = "~/projects/lua/llm.nvim",
+    enabled = false,
     event = "BufRead",
     opts = {
       -- cf Setup
