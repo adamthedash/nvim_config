@@ -14,7 +14,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim", -- https://github.com/mrcjkb/rustaceanvim
-    enabled = false,
+    -- enabled = false,
     version = "^5", -- Recommended
     ft = "rust",
     config = function()
@@ -32,15 +32,6 @@ return {
       }
     end,
   },
-  {
-    "rust-lang/rust.vim", -- https://github.com/rust-lang/rust.vim
-    enabled = true,
-    ft = "rust",
-    init = function()
-      vim.g.rustfmt_autosave = 1
-    end,
-  },
-
   {
     "mfussenegger/nvim-dap",
     config = function()

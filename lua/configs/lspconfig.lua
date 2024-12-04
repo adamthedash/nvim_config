@@ -16,8 +16,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require'lspconfig'.rust_analyzer.setup{}
-
 vim.lsp.inlay_hint.enable(true)
 vim.diagnostic.config {
   virtual_text = true,
