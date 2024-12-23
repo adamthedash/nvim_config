@@ -34,7 +34,8 @@ unmap("n", "<leader>ch") -- NvCheatsheet
 vim.cmd "ab h vert help" -- https://stackoverflow.com/a/630913
 
 -- LLM Stuff
-local llm_completion = require "llm.completion"
-map("i", "<C-E>", llm_completion.accept_suggestion, { desc = "Accept LLM suggestion" })
-map("n", "<Esc>", llm_completion.dismiss_suggestion, { desc = "Dismiss LLM suggestion" })
-
+local llm_enabled, llm_completion = pcall(require,  "llm.completion")
+if llm_enabled then
+  map("i", "<C-E>", llm_completion.accept_suggestion, { desc = "Accept LLM suggestion" })
+  map("n", "<Esc>", llm_completion.dismiss_suggestion, { desc = "Dismiss LLM suggestion" })
+end
