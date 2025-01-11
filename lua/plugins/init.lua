@@ -4,13 +4,15 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
-
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
+  },
+  {
+    "folke/which-key.nvim",
+    lazy = false,
   },
   {
     "mrcjkb/rustaceanvim", -- https://github.com/mrcjkb/rustaceanvim
@@ -94,6 +96,53 @@ return {
       enable_suggestions_on_startup = true,
       enable_suggestions_on_files = "*", -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
       disable_url_path_completion = true, -- cf Backend
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zjp-CN/nvim-cmp-lsp-rs",
+        ops = {
+          kind = function(k)
+            -- The argument in callback is type-aware with opts annotated,
+            -- so you can type the CompletionKind easily.
+            return { k.Module, k.Function }
+          end,
+          -- -- Override the default comparator list provided by this plugin.
+          -- -- Mainly used with key binding to switch between these Comparators.
+          -- combo = {
+          --   -- The key is the name for combination of comparators and used
+          --   -- in notification in swiching.
+          --   -- The value is a list of comparators functions or a function
+          --   -- to generate the list.
+          --   alphabetic_label_but_underscore_last = function()
+          --     local comparators = require("cmp_lsp_rs").comparators
+          --     return { comparators.sort_by_label_but_underscore_last }
+          --   end,
+          --   recentlyUsed_sortText = function()
+          --     local compare = require("cmp").config.compare
+          --     local comparators = require("cmp_lsp_rs").comparators
+          --     -- Mix cmp sorting function with cmp_lsp_rs.
+          --     return {
+          --       compare.recently_used,
+          --       compare.sort_text,
+          --       comparators.sort_by_label_but_underscore_last,
+          --     }
+          --   end,
+          -- },
+          opts = function(_, opts)
+            local comparators = require "cmp_lsp_rs"
+            opts.sorting.comparators = {
+              comparators.inscope_inherent_import,
+            }
+            -- for k,v in pairs(opts) do
+            --   print(k, v)
+            -- end
+            return opts
+          end,
+        },
+      },
     },
   },
 }
