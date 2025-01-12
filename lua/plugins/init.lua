@@ -16,9 +16,14 @@ return {
   },
   {
     "mrcjkb/rustaceanvim", -- https://github.com/mrcjkb/rustaceanvim
-    -- enabled = false,
     version = "^5", -- Recommended
-    ft = "rust",
+    event = "BufEnter",
+    cond = function()
+      -- Start rustaceanvim when we load up a rust workspace instead of on file enter
+      local cwd = vim.fn.getcwd()
+      local is_rust = vim.fn.glob(cwd .. "/Cargo.toml") ~= ""
+      return is_rust
+    end,
     config = function()
       local mason_registry = require "mason-registry"
       local codelldb = mason_registry.get_package "codelldb"
@@ -26,6 +31,10 @@ return {
       local codelldb_path = extension_path .. "adapter/codelldb"
       local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
       local cfg = require "rustaceanvim.config"
+
+      -- Trigger the lsp to warm up in the background
+      local client_id = require("rustaceanvim.lsp").start(0)
+      vim.lsp.buf_detach_client(0, client_id)
 
       vim.g.rustaceanvim = {
         dap = {
