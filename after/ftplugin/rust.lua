@@ -14,6 +14,7 @@ map("n", "<leader>ca", function()
   vim.cmd.RustLsp { "codeAction" }
 end, { silent = true, buffer = cur_buffer, desc = "Code Action" })
 
+-- ================================== Diagnostics =========================================
 ---@param rendered_diagnostic string
 local function render_ansi_code_diagnostic(rendered_diagnostic)
   --- A chopped down verson of rustaceanvim's rendering function https://github.com/mrcjkb/rustaceanvim/blob/master/lua/rustaceanvim/commands/diagnostic.lua#L240
@@ -89,3 +90,5 @@ end
 map("n", "<leader>cb", function()
   cycle_diagnostics_on_current_line()
 end, { noremap = true, silent = true })
+-- ================================== Diagnostics End =========================================
+
