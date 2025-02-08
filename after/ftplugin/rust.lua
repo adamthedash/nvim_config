@@ -14,6 +14,41 @@ map("n", "<leader>ca", function()
   vim.cmd.RustLsp { "codeAction" }
 end, { silent = true, buffer = cur_buffer, desc = "Code Action" })
 
+-- Modified to use built in vim link opening https://github.com/mrcjkb/rustaceanvim/blob/master/lua/rustaceanvim/commands/external_docs.lua
+local function open_external_docs()
+  local ra = require "rustaceanvim.rust_analyzer"
+  local clients = ra.get_active_rustaceanvim_clients(0)
+  if #clients == 0 then
+    return
+  end
+  ra.buf_request(
+    0,
+    "experimental/externalDocs",
+    vim.lsp.util.make_position_params(0, clients[1].offset_encoding or "utf-8"),
+    function(_, url)
+      if url then
+        vim.ui.open(url)
+      end
+    end
+  )
+end
+
+map("n", "<leader>gh", function()
+  open_external_docs()
+end, { silent = true, buffer = cur_buffer, desc = "Open docs.rs" })
+
+map("n", "<leader>cc", function()
+  vim.cmd.RustLsp { "openCargo" }
+end, { silent = true, buffer = cur_buffer, desc = "Open Cargo.toml" })
+
+map("n", "<leader>gd", function()
+  vim.lsp.buf.definition()
+end, { silent = true, buffer = cur_buffer, desc = "Goto Definition" })
+
+map("n", "<leader>gr", function()
+  require("telescope.builtin").lsp_references()
+end, { silent = true, buffer = cur_buffer, desc = "Show References" })
+
 -- ================================== Diagnostics =========================================
 ---@param rendered_diagnostic string
 local function render_ansi_code_diagnostic(rendered_diagnostic)
@@ -91,4 +126,3 @@ map("n", "<leader>cb", function()
   cycle_diagnostics_on_current_line()
 end, { noremap = true, silent = true })
 -- ================================== Diagnostics End =========================================
-
