@@ -9,7 +9,7 @@ local options = {
       -- To organize the imports.
       "ruff_organize_imports",
     },
-    rust = { "rust_analyzer", "leptosfmt" },
+    rust = { "rustfmt", "leptosfmt" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
@@ -17,6 +17,10 @@ local options = {
     lsp_fallback = true,
   },
   formatters = {
+    rustfmt = {
+      command = "rustfmt",
+      stdin = true,
+    },
     leptosfmt = {
       command = "leptosfmt",
       args = { "--stdin" },
