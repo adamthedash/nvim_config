@@ -10,6 +10,7 @@ local options = {
       "ruff_organize_imports",
     },
     rust = { "rustfmt", "leptosfmt" },
+    java = { "google-java-format" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
